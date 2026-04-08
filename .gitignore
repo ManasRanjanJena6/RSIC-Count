@@ -44,8 +44,8 @@ ENV/
 # Data files
 data/images/*
 !data/images/.gitkeep
-data/fc_features/*.npy
-data/att_features/*.npy
+data/fc_features_aug/*.npy
+data/att_features_aug/*.npy
 data/captions.json
 data/captions_augmented.json
 data/counts.json
