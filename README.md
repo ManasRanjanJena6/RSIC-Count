@@ -723,7 +723,7 @@ MIT License - feel free to use for research and commercial purposes.
 
 ## 📞 Contact
 
-For questions or issues, please open a GitHub issue or contact: your.jmanasranjan6@gmail.com
+For questions or issues, please open a GitHub issue or contact: jmanasranjan6@gmail.com
 
 ---
 
