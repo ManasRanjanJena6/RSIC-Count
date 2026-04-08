@@ -1,0 +1,37 @@
+[
+  {
+    "filename": "air1.png",
+    "caption": "An aerial view of an airport tarmac with 17 aircraft parked, including 5 big and 12 small airplanes.",
+    "augmented_id": "air1"
+  },
+  {
+    "filename": "air1.png",
+    "caption": "An airport apron showing 17 planes in total including 5 big aircraft and 12 small ones parked on the tarmac.",
+    "augmented_id": "air1_hflip"
+  },
+  {
+    "filename": "air1.png",
+    "caption": "A high-resolution aerial image of an airport with 17 airplanes visible, comprising 5 big and 12 small aircraft.",
+    "augmented_id": "air1_vflip"
+  },
+  {
+    "filename": "bridge1.png",
+    "caption": "A large bridge spanning across a river with vehicles traveling on it.",
+    "augmented_id": "bridge1"
+  },
+  {
+    "filename": "bridge1.png",
+    "caption": "An aerial view of a suspension bridge connecting two land masses over water.",
+    "augmented_id": "bridge1_rot90"
+  },
+  {
+    "filename": "ship1.png",
+    "caption": "Several cargo ships docked at a busy harbor with containers stacked nearby.",
+    "augmented_id": "ship1"
+  },
+  {
+    "filename": "ship1.png",
+    "caption": "Maritime vessels anchored at a commercial port with shipping infrastructure.",
+    "augmented_id": "ship1_hflip"
+  }
+]

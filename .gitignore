@@ -55,6 +55,8 @@ data/vocab_augmented.pkl
 # Keep example files
 !data/example_captions.json
 !data/example_counts.json
+!data/example_captions_augmented.json
+!data/example_counts_augmented.json
 
 # Checkpoints
 checkpoints/*.pth

@@ -1,0 +1,23 @@
+{
+  "air1": {
+    "aeroplane": 17
+  },
+  "air1_hflip": {
+    "aeroplane": 17
+  },
+  "air1_vflip": {
+    "aeroplane": 17
+  },
+  "bridge1": {
+    "bridge": 1
+  },
+  "bridge1_rot90": {
+    "bridge": 1
+  },
+  "ship1": {
+    "ship": 3
+  },
+  "ship1_hflip": {
+    "ship": 3
+  }
+}
