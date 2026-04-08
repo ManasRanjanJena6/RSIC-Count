@@ -1,0 +1,85 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv
+
+# PyTorch
+*.pth
+*.pt
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Data files
+data/images/*
+!data/images/.gitkeep
+data/fc_features/*.npy
+data/att_features/*.npy
+data/captions.json
+data/captions_augmented.json
+data/counts.json
+data/counts_augmented.json
+data/vocab_augmented.pkl
+
+# Keep example files
+!data/example_captions.json
+!data/example_counts.json
+
+# Checkpoints
+checkpoints/*.pth
+
+# Outputs
+outputs/*
+visualizations/*
+*.png
+*.jpg
+*.jpeg
+*.gif
+
+# Logs
+*.log
+logs/
+runs/
+wandb/
+
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Misc
+*.zip
+*.tar.gz
+*.rar

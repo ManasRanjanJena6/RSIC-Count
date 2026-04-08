@@ -1,0 +1,132 @@
+# RSIC-Count++ Configuration File
+# Modify these settings for different experiments
+
+# ==================== BACKBONE ====================
+# CNN backbone for feature extraction
+backbone:
+  # Model architecture: 'resnet50', 'resnet101', 'resnet152', 
+  #                      'densenet121', 'densenet161', 'densenet169', 'densenet201',
+  #                      'efficientnet_b0', 'efficientnet_b4', 'efficientnet_b7',
+  #                      'convnext_tiny', 'convnext_small', 'convnext_base',
+  #                      'resnext50_32x4d', 'resnext101_32x8d', 'resnext101_64x4d',
+  #                      'swin_t', 'swin_s', 'swin_b',
+  #                      'vit_b_16', 'vit_b_32', 'vit_l_16', 'vit_l_32'
+  name: "convnext_base"
+  
+  # Feature dimension - must match backbone output:
+  # ResNet/ResNeXt: 2048
+  # DenseNet: 1024-2208 (varies by model)
+  # EfficientNet: 1280-2560 (varies by model)
+  # ConvNeXt/Swin/ViT: 768-1024 (varies by model)
+  feature_dim: 1024
+  
+  # Pretrained weights: true (ImageNet) or false (random init)
+  pretrained: true
+  
+  # Output spatial size (most models output 7x7 for 224x224 input)
+  spatial_size: 7
+
+# ==================== DATA ====================
+data:
+  captions: "data/captions_augmented.json"
+  counts: "data/counts_augmented.json"
+  image_dir: "data/images"
+  fc_features: "data/fc_features_aug"
+  att_features: "data/att_features_aug"
+  vocab: "data/vocab_augmented.pkl"
+  vocab_freq_threshold: 5
+  max_caption_length: 25
+
+# ==================== MODEL ====================
+model:
+  # Model type: 'lstm', 'transformer', or 'multitask'
+  type: "lstm"  # Switch back to LSTM for 250-epoch training
+  
+  # Shared parameters
+  embed_dim: 512
+  hidden_dim: 512
+  count_vec_size: 8
+  count_embed_dim: 256  # INCREASED from 128 for better count capacity
+  dropout: 0.3  # LSTM dropout
+  
+  # LSTM-specific
+  att_dim: 512
+  
+  # Transformer-specific (kept for compatibility but not used)
+  d_model: 512
+  num_heads: 8
+  num_layers: 6
+  d_ff: 2048
+  max_len: 50048
+
+# ==================== TRAINING ====================
+training:
+  batch_size: 12  # Reduced for better gradient updates
+  epochs: 250  # Extended from 130 to 250 for maximum performance
+  learning_rate: 0.0002  # Slightly higher for faster convergence
+  weight_decay: 0.0001  # Increased regularization
+  grad_clip: 5.0
+  
+  # Learning rate scheduler
+  scheduler:
+    type: "ReduceLROnPlateau"  # or "StepLR", "CosineAnnealingLR"
+    factor: 0.5
+    patience: 5  # Faster LR reduction
+    min_lr: 0.00001
+  
+  # Multi-task learning (only for multitask model)
+  multitask:
+    caption_weight: 1.0  # Balanced with count
+    count_weight: 3.0  # INCREASED weight to prioritize count accuracy
+    count_loss_type: "mse"
+  
+  # Data augmentation
+  augmentation:
+    enabled: true
+    image_augmentation:
+      horizontal_flip: 0.5
+      rotation: 15  # degrees
+      brightness: 0.2
+      contrast: 0.2
+    caption_augmentation:
+      paraphrase: true
+      synonym_replace: 0.1
+  
+  # Checkpointing
+  save_dir: "checkpoints"
+  save_every: 10  # Save every 10 epochs for longer training
+  resume: null   # Path to checkpoint to resume from
+
+# ==================== EVALUATION ====================
+evaluation:
+  beam_search: true
+  beam_size: 3
+  length_penalty: 0.7
+  
+  # Metrics to compute
+  metrics:
+    - "BLEU"
+    - "METEOR"
+    - "ROUGE"
+    - "CIDEr"
+  
+  # Count evaluation (for multitask)
+  count_threshold: 2  # Accuracy threshold
+
+# ==================== INFERENCE ====================
+inference:
+  beam_search: true
+  beam_size: 5
+  max_length: 25
+  temperature: 1.0
+  
+  # Visualization
+  visualize_attention: true
+  save_attention: true
+
+# ==================== SYSTEM ====================
+system:
+  device: "cuda"  # 'cuda' or 'cpu'
+  num_workers: 4
+  seed: 42
+  mixed_precision: false  # Use FP16 training
